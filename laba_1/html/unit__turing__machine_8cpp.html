@@ -1,0 +1,715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Turing machine &amp; algo markov: Файл turing_machine/turing_test/unit_turing_machine.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Turing machine &amp; algo markov
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('unit__turing__machine_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Файл unit_turing_machine.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;UnitTest++/UnitTest++.h&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &quot;turing_machine.hpp&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ab7338cfb76c9e63f7a553786bae4fdfb" id="r_ab7338cfb76c9e63f7a553786bae4fdfb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab7338cfb76c9e63f7a553786bae4fdfb">TEST</a> (DirectionToCharValid)</td></tr>
+<tr class="memitem:a862860ea434ce81b3b82d503ec64dd35" id="r_a862860ea434ce81b3b82d503ec64dd35"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a862860ea434ce81b3b82d503ec64dd35">TEST</a> (CharToDirectionValidUpper)</td></tr>
+<tr class="memitem:a335ecea1bb8a95996686cfcf88c5ea28" id="r_a335ecea1bb8a95996686cfcf88c5ea28"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a335ecea1bb8a95996686cfcf88c5ea28">TEST</a> (CharToDirectionValidLower)</td></tr>
+<tr class="memitem:a57eea1e6705d0e3b224182b416dab4f6" id="r_a57eea1e6705d0e3b224182b416dab4f6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a57eea1e6705d0e3b224182b416dab4f6">TEST</a> (CharToDirectionInvalidThrows)</td></tr>
+<tr class="memitem:a3c2599fd9880cd834f698819cc1d8ffa" id="r_a3c2599fd9880cd834f698819cc1d8ffa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3c2599fd9880cd834f698819cc1d8ffa">TEST</a> (TMRuleDefaultCtor)</td></tr>
+<tr class="memitem:ade68c1917c122770c5e2eaf59d02fbcc" id="r_ade68c1917c122770c5e2eaf59d02fbcc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ade68c1917c122770c5e2eaf59d02fbcc">TEST</a> (TMRuleParameterizedCtor)</td></tr>
+<tr class="memitem:adbbee4c87c2d78431959db9776446b58" id="r_adbbee4c87c2d78431959db9776446b58"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adbbee4c87c2d78431959db9776446b58">TEST</a> (TMRuleMatchesTrue)</td></tr>
+<tr class="memitem:add69cd75e09cda8df18d46594311c8b6" id="r_add69cd75e09cda8df18d46594311c8b6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#add69cd75e09cda8df18d46594311c8b6">TEST</a> (TMRuleMatchesFalseState)</td></tr>
+<tr class="memitem:aefa69e95875c91100c1c2382b254a791" id="r_aefa69e95875c91100c1c2382b254a791"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aefa69e95875c91100c1c2382b254a791">TEST</a> (TMRuleMatchesFalseSymbol)</td></tr>
+<tr class="memitem:acc973b4b1fb292c71bf7bc57318f53a8" id="r_acc973b4b1fb292c71bf7bc57318f53a8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#acc973b4b1fb292c71bf7bc57318f53a8">TEST</a> (TMRuleToString)</td></tr>
+<tr class="memitem:a6a468adf75f88dfeba0de422a6e251d0" id="r_a6a468adf75f88dfeba0de422a6e251d0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6a468adf75f88dfeba0de422a6e251d0">TEST</a> (TMRuleEqualitySame)</td></tr>
+<tr class="memitem:a4705e7d6a39aff987dfa7826ae568538" id="r_a4705e7d6a39aff987dfa7826ae568538"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4705e7d6a39aff987dfa7826ae568538">TEST</a> (TMRuleEqualityDifferent)</td></tr>
+<tr class="memitem:ab07b911343a282ab6a1aa1ad4e4667cc" id="r_ab07b911343a282ab6a1aa1ad4e4667cc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab07b911343a282ab6a1aa1ad4e4667cc">TEST</a> (TMRuleStreamOutput)</td></tr>
+<tr class="memitem:a69d49c6dd40b2728ca4bc4d65a841fe5" id="r_a69d49c6dd40b2728ca4bc4d65a841fe5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a69d49c6dd40b2728ca4bc4d65a841fe5">TEST</a> (TMRuleStreamInputValid)</td></tr>
+<tr class="memitem:a8f298f9c6447ad46b8e3a9b3e7e6effd" id="r_a8f298f9c6447ad46b8e3a9b3e7e6effd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8f298f9c6447ad46b8e3a9b3e7e6effd">TEST</a> (TMRuleSetEmptyInitial)</td></tr>
+<tr class="memitem:a281e04ab60fe2620d874f412b874afe9" id="r_a281e04ab60fe2620d874f412b874afe9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a281e04ab60fe2620d874f412b874afe9">TEST</a> (TMRuleSetAddRule)</td></tr>
+<tr class="memitem:a2c4eb9eec444016244f790f9334fedeb" id="r_a2c4eb9eec444016244f790f9334fedeb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2c4eb9eec444016244f790f9334fedeb">TEST</a> (TMRuleSetFindRuleFound)</td></tr>
+<tr class="memitem:a26e1689caf76976ab24c0de46735c001" id="r_a26e1689caf76976ab24c0de46735c001"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a26e1689caf76976ab24c0de46735c001">TEST</a> (TMRuleSetFindRuleNotFound)</td></tr>
+<tr class="memitem:a9d2ec252a9967e9a27539b8dcfb8f1ae" id="r_a9d2ec252a9967e9a27539b8dcfb8f1ae"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9d2ec252a9967e9a27539b8dcfb8f1ae">TEST</a> (TMRuleSetRemoveRuleSuccess)</td></tr>
+<tr class="memitem:a30556bc98afebfb236c3bba3794c1604" id="r_a30556bc98afebfb236c3bba3794c1604"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a30556bc98afebfb236c3bba3794c1604">TEST</a> (TMRuleSetRemoveRuleNonExistent)</td></tr>
+<tr class="memitem:a5128287740c68c15e2988ef73d8e88ff" id="r_a5128287740c68c15e2988ef73d8e88ff"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5128287740c68c15e2988ef73d8e88ff">TEST</a> (TMRuleSetClear)</td></tr>
+<tr class="memitem:a10a52c072bd7d9e06b205c6b0fb248a3" id="r_a10a52c072bd7d9e06b205c6b0fb248a3"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a10a52c072bd7d9e06b205c6b0fb248a3">TEST</a> (TMRuleSetEquality)</td></tr>
+<tr class="memitem:a708c3e3f6ed388e6158606cc1da4aa88" id="r_a708c3e3f6ed388e6158606cc1da4aa88"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a708c3e3f6ed388e6158606cc1da4aa88">TEST</a> (TMDefaultCtor)</td></tr>
+<tr class="memitem:ad2fe13625de7aae4d41db467eb243180" id="r_ad2fe13625de7aae4d41db467eb243180"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad2fe13625de7aae4d41db467eb243180">TEST</a> (TMParameterizedCtorNormal)</td></tr>
+<tr class="memitem:a2fe136adb1d9e39b68468983710191ac" id="r_a2fe136adb1d9e39b68468983710191ac"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2fe136adb1d9e39b68468983710191ac">TEST</a> (TMSetTapeEmptyFallbackToBlank)</td></tr>
+<tr class="memitem:ac2b465e5ccdbbbc7f6831db4ba9d24a1" id="r_ac2b465e5ccdbbbc7f6831db4ba9d24a1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac2b465e5ccdbbbc7f6831db4ba9d24a1">TEST</a> (TMStepExecutesRule)</td></tr>
+<tr class="memitem:a89cd7cb32debd49680253a6010a6d011" id="r_a89cd7cb32debd49680253a6010a6d011"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a89cd7cb32debd49680253a6010a6d011">TEST</a> (TMStepHaltsWithoutRule)</td></tr>
+<tr class="memitem:acd4789efec87129aefdd6568a0958173" id="r_acd4789efec87129aefdd6568a0958173"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#acd4789efec87129aefdd6568a0958173">TEST</a> (TMTapeExpandRight)</td></tr>
+<tr class="memitem:ac0d4167996b5db20718eea7efafb8201" id="r_ac0d4167996b5db20718eea7efafb8201"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac0d4167996b5db20718eea7efafb8201">TEST</a> (TMTapeExpandLeft)</td></tr>
+<tr class="memitem:ab9394a6185ae21266791dee1cdd69100" id="r_ab9394a6185ae21266791dee1cdd69100"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab9394a6185ae21266791dee1cdd69100">TEST</a> (TMRunBinaryIncrement)</td></tr>
+<tr class="memitem:a9faa3cde3331a18b084a91188f90e2ca" id="r_a9faa3cde3331a18b084a91188f90e2ca"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9faa3cde3331a18b084a91188f90e2ca">TEST</a> (TMStepCountIncrements)</td></tr>
+<tr class="memitem:aedc09276425b6a69c92f47ab6da74be8" id="r_aedc09276425b6a69c92f47ab6da74be8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aedc09276425b6a69c92f47ab6da74be8">TEST</a> (TMOutputStream)</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Функции</h2>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57eea1e6705d0e3b224182b416dab4f6" name="a57eea1e6705d0e3b224182b416dab4f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57eea1e6705d0e3b224182b416dab4f6">&#9670;&#160;</a></span>TEST() <span class="overload">[1/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CharToDirectionInvalidThrows</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a335ecea1bb8a95996686cfcf88c5ea28" name="a335ecea1bb8a95996686cfcf88c5ea28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335ecea1bb8a95996686cfcf88c5ea28">&#9670;&#160;</a></span>TEST() <span class="overload">[2/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CharToDirectionValidLower</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a862860ea434ce81b3b82d503ec64dd35" name="a862860ea434ce81b3b82d503ec64dd35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a862860ea434ce81b3b82d503ec64dd35">&#9670;&#160;</a></span>TEST() <span class="overload">[3/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">CharToDirectionValidUpper</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7338cfb76c9e63f7a553786bae4fdfb" name="ab7338cfb76c9e63f7a553786bae4fdfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7338cfb76c9e63f7a553786bae4fdfb">&#9670;&#160;</a></span>TEST() <span class="overload">[4/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">DirectionToCharValid</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a708c3e3f6ed388e6158606cc1da4aa88" name="a708c3e3f6ed388e6158606cc1da4aa88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708c3e3f6ed388e6158606cc1da4aa88">&#9670;&#160;</a></span>TEST() <span class="overload">[5/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMDefaultCtor</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aedc09276425b6a69c92f47ab6da74be8" name="aedc09276425b6a69c92f47ab6da74be8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedc09276425b6a69c92f47ab6da74be8">&#9670;&#160;</a></span>TEST() <span class="overload">[6/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMOutputStream</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2fe13625de7aae4d41db467eb243180" name="ad2fe13625de7aae4d41db467eb243180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fe13625de7aae4d41db467eb243180">&#9670;&#160;</a></span>TEST() <span class="overload">[7/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMParameterizedCtorNormal</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c2599fd9880cd834f698819cc1d8ffa" name="a3c2599fd9880cd834f698819cc1d8ffa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2599fd9880cd834f698819cc1d8ffa">&#9670;&#160;</a></span>TEST() <span class="overload">[8/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleDefaultCtor</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4705e7d6a39aff987dfa7826ae568538" name="a4705e7d6a39aff987dfa7826ae568538"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4705e7d6a39aff987dfa7826ae568538">&#9670;&#160;</a></span>TEST() <span class="overload">[9/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleEqualityDifferent</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a468adf75f88dfeba0de422a6e251d0" name="a6a468adf75f88dfeba0de422a6e251d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a468adf75f88dfeba0de422a6e251d0">&#9670;&#160;</a></span>TEST() <span class="overload">[10/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleEqualitySame</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add69cd75e09cda8df18d46594311c8b6" name="add69cd75e09cda8df18d46594311c8b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add69cd75e09cda8df18d46594311c8b6">&#9670;&#160;</a></span>TEST() <span class="overload">[11/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleMatchesFalseState</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefa69e95875c91100c1c2382b254a791" name="aefa69e95875c91100c1c2382b254a791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa69e95875c91100c1c2382b254a791">&#9670;&#160;</a></span>TEST() <span class="overload">[12/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleMatchesFalseSymbol</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbbee4c87c2d78431959db9776446b58" name="adbbee4c87c2d78431959db9776446b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbbee4c87c2d78431959db9776446b58">&#9670;&#160;</a></span>TEST() <span class="overload">[13/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleMatchesTrue</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade68c1917c122770c5e2eaf59d02fbcc" name="ade68c1917c122770c5e2eaf59d02fbcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade68c1917c122770c5e2eaf59d02fbcc">&#9670;&#160;</a></span>TEST() <span class="overload">[14/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleParameterizedCtor</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a281e04ab60fe2620d874f412b874afe9" name="a281e04ab60fe2620d874f412b874afe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a281e04ab60fe2620d874f412b874afe9">&#9670;&#160;</a></span>TEST() <span class="overload">[15/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetAddRule</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5128287740c68c15e2988ef73d8e88ff" name="a5128287740c68c15e2988ef73d8e88ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5128287740c68c15e2988ef73d8e88ff">&#9670;&#160;</a></span>TEST() <span class="overload">[16/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetClear</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f298f9c6447ad46b8e3a9b3e7e6effd" name="a8f298f9c6447ad46b8e3a9b3e7e6effd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f298f9c6447ad46b8e3a9b3e7e6effd">&#9670;&#160;</a></span>TEST() <span class="overload">[17/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetEmptyInitial</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10a52c072bd7d9e06b205c6b0fb248a3" name="a10a52c072bd7d9e06b205c6b0fb248a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10a52c072bd7d9e06b205c6b0fb248a3">&#9670;&#160;</a></span>TEST() <span class="overload">[18/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetEquality</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c4eb9eec444016244f790f9334fedeb" name="a2c4eb9eec444016244f790f9334fedeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c4eb9eec444016244f790f9334fedeb">&#9670;&#160;</a></span>TEST() <span class="overload">[19/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetFindRuleFound</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26e1689caf76976ab24c0de46735c001" name="a26e1689caf76976ab24c0de46735c001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26e1689caf76976ab24c0de46735c001">&#9670;&#160;</a></span>TEST() <span class="overload">[20/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetFindRuleNotFound</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30556bc98afebfb236c3bba3794c1604" name="a30556bc98afebfb236c3bba3794c1604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30556bc98afebfb236c3bba3794c1604">&#9670;&#160;</a></span>TEST() <span class="overload">[21/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetRemoveRuleNonExistent</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d2ec252a9967e9a27539b8dcfb8f1ae" name="a9d2ec252a9967e9a27539b8dcfb8f1ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d2ec252a9967e9a27539b8dcfb8f1ae">&#9670;&#160;</a></span>TEST() <span class="overload">[22/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleSetRemoveRuleSuccess</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69d49c6dd40b2728ca4bc4d65a841fe5" name="a69d49c6dd40b2728ca4bc4d65a841fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d49c6dd40b2728ca4bc4d65a841fe5">&#9670;&#160;</a></span>TEST() <span class="overload">[23/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleStreamInputValid</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab07b911343a282ab6a1aa1ad4e4667cc" name="ab07b911343a282ab6a1aa1ad4e4667cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab07b911343a282ab6a1aa1ad4e4667cc">&#9670;&#160;</a></span>TEST() <span class="overload">[24/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleStreamOutput</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc973b4b1fb292c71bf7bc57318f53a8" name="acc973b4b1fb292c71bf7bc57318f53a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc973b4b1fb292c71bf7bc57318f53a8">&#9670;&#160;</a></span>TEST() <span class="overload">[25/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRuleToString</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9394a6185ae21266791dee1cdd69100" name="ab9394a6185ae21266791dee1cdd69100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9394a6185ae21266791dee1cdd69100">&#9670;&#160;</a></span>TEST() <span class="overload">[26/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMRunBinaryIncrement</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fe136adb1d9e39b68468983710191ac" name="a2fe136adb1d9e39b68468983710191ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe136adb1d9e39b68468983710191ac">&#9670;&#160;</a></span>TEST() <span class="overload">[27/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMSetTapeEmptyFallbackToBlank</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9faa3cde3331a18b084a91188f90e2ca" name="a9faa3cde3331a18b084a91188f90e2ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9faa3cde3331a18b084a91188f90e2ca">&#9670;&#160;</a></span>TEST() <span class="overload">[28/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMStepCountIncrements</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2b465e5ccdbbbc7f6831db4ba9d24a1" name="ac2b465e5ccdbbbc7f6831db4ba9d24a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b465e5ccdbbbc7f6831db4ba9d24a1">&#9670;&#160;</a></span>TEST() <span class="overload">[29/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMStepExecutesRule</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89cd7cb32debd49680253a6010a6d011" name="a89cd7cb32debd49680253a6010a6d011"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89cd7cb32debd49680253a6010a6d011">&#9670;&#160;</a></span>TEST() <span class="overload">[30/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMStepHaltsWithoutRule</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0d4167996b5db20718eea7efafb8201" name="ac0d4167996b5db20718eea7efafb8201"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d4167996b5db20718eea7efafb8201">&#9670;&#160;</a></span>TEST() <span class="overload">[31/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMTapeExpandLeft</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd4789efec87129aefdd6568a0958173" name="acd4789efec87129aefdd6568a0958173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd4789efec87129aefdd6568a0958173">&#9670;&#160;</a></span>TEST() <span class="overload">[32/32]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">TMTapeExpandRight</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_2d33ccfab6055c4c87186046f96af925.html">turing_machine</a></li><li class="navelem"><a href="dir_b19eb7e1ef9c38a0e89a6f09d03c0a92.html">turing_test</a></li><li class="navelem"><a href="unit__turing__machine_8cpp.html">unit_turing_machine.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

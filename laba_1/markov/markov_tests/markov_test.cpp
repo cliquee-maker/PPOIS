@@ -1,5 +1,10 @@
+/**
+ * @file markov_test.cpp
+ * @brief Тестовое приложение для Нормальных Алгоритмов Маркова (НАМ) с поддержкой CLI и интерактивного меню.
+ */
 #include "markov.hpp"
 #include <iostream>
+#include <fstream>
 #include <limits>
 #include <string>
 
@@ -17,7 +22,63 @@ void printMenu() {
     std::cout << "Choice: ";
 }
 
-int main() {
+int runFileMode(int argc, char* argv[]) {
+    std::string filename;
+    bool logEnabled = false;
+
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "-log") {
+            logEnabled = true;
+        } else if (filename.empty()) {
+            filename = arg;
+        }
+    }
+
+    if (filename.empty()) {
+        std::cerr << "Ошибка: не указан путь к файлу.\n";
+        return 1;
+    }
+
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Ошибка: не удалось открыть файл " << filename << "\n";
+        return 1;
+    }
+
+    std::string initialWord;
+    if (!(file >> initialWord)) {
+        std::cerr << "Ошибка: неверный формат файла (ожидается начальное слово)\n";
+        return 1;
+    }
+
+    RuleSet activeRules;
+    try {
+        file >> activeRules;
+    } catch (const std::exception& e) {
+        std::cerr << "Ошибка при чтении правил из файла: " << e.what() << "\n";
+        return 1;
+    }
+
+    MarkovAlgorithm ma(initialWord, activeRules);
+
+    if (logEnabled) {
+        std::cout << "Стартовое состояние\n" << ma << "\n\n";
+    }
+
+    while (ma.step()) {
+        if (logEnabled) {
+            std::cout << ma << "\n\n";
+        }
+    }
+
+    std::cout << "Алгоритм остановился\n";
+    std::cout << "Финальный результат:\n" << ma << "\n";
+
+    return 0;
+}
+
+int runInteractiveMode() {
     RuleSet activeRules;
     MarkovAlgorithm ma;
     int choice;
@@ -62,7 +123,6 @@ int main() {
                 std::getline(std::cin, word);
                 if (!word.empty() && word.back() == '\r') word.pop_back();
 
-                // Пересоздаем алгоритм с актуальным набором правил
                 ma = MarkovAlgorithm(word, activeRules);
                 std::cout << "Algorithm reset and word initialized!\n";
                 break;
@@ -97,4 +157,14 @@ int main() {
         }
     }
     return 0;
+}
+
+int main(int argc, char* argv[]) {
+    if (argc > 1) {
+        return runFileMode(argc, argv);
+    } 
+    else {
+        std::cout << "Запуск в интерактивном режиме (аргументы не переданы)...\n";
+        return runInteractiveMode();
+    }
 }
