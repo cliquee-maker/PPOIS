@@ -21,6 +21,10 @@ public:
     std::string getLeft() const;
     std::string getRight() const;
     bool isFinalRule() const;
+    /**
+     * @brief Преобразует правило в строковый вид (например, "a -> b" или "a ->. b").
+     * @return Строковое представление правила.
+     */
     std::string toString() const;
 
     bool operator==(const Rule& other) const;     
@@ -42,8 +46,16 @@ private:
 public:
     RuleSet();
     explicit RuleSet(const std::vector<Rule>& rules);
-
+    /**
+     * @brief Добавляет правило в конец списка.
+     * @param rule Объект правила.
+     */
     void addRule(const Rule& rule);
+    /**
+     * @brief Разбирает строку и добавляет правило.
+     * @param ruleStr Строка формата "left -> right" или "left ->. right".
+     * @throws std::invalid_argument Если формат строки неверный.
+     */
     void addRule(const std::string& ruleStr);
     void clear();
 
@@ -64,28 +76,32 @@ public:
  */
 class MarkovAlgorithm {
 private:
-    std::string word;      
-    RuleSet ruleSet;     
-    bool halted;           
-    size_t stepCount;     
+    std::string word;
+    RuleSet ruleSet;
+    bool halted;
+    size_t stepCount;
 
 public:
     MarkovAlgorithm();
     MarkovAlgorithm(const std::string& initialWord, const RuleSet& rules);
-
-    bool step();   
-    void run(); 
-
-    std::string getWord() const;
+    /**
+     * @brief Выполняет ровно один шаг подстановки (первого применимого правила).
+     * @return true, если шаг успешно выполнен; false, если ни одно правило не применимо или алгоритм остановлен.
+     */
+    bool step();
+    /**
+     * @brief Запускает алгоритм до полной остановки или превышения лимита шагов.
+     * @param maxSteps Максимально допустимое количество шагов (защита от зацикливания).
+     */
+    void run(size_t maxSteps = 100000);
+    /**
+     * @brief Задает новое обрабатываемое слово и сбрасывает счетчики/флаг остановки.
+     * @param newWord Новое слово.
+     */
+    void setWord(const std::string& newWord);
+    const std::string& getWord() const;
     bool isHalted() const;
     size_t getStepCount() const;
 
-    MarkovAlgorithm& operator++();  
-    MarkovAlgorithm operator++(int); 
-
-    bool operator==(const MarkovAlgorithm& other) const; 
-    bool operator!=(const MarkovAlgorithm& other) const; 
-
     friend std::ostream& operator<<(std::ostream& os, const MarkovAlgorithm& ma);
-    friend std::istream& operator>>(std::istream& is, MarkovAlgorithm& ma);
 };

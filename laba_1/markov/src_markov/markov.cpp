@@ -1,6 +1,23 @@
 #include "markov.hpp"
+
 #include <sstream>
-#include <algorithm>
+#include <stdexcept>
+
+namespace {
+
+const char* const kWhitespace = " \t\r\n";
+
+bool isBlank(const std::string& s) {
+    return s.find_first_not_of(kWhitespace) == std::string::npos;
+}
+
+std::string trim(const std::string& s) {
+    size_t begin = s.find_first_not_of(kWhitespace);
+    if (begin == std::string::npos) return "";
+    size_t end = s.find_last_not_of(kWhitespace);
+    return s.substr(begin, end - begin + 1);
+}
+} 
 
 Rule::Rule() : isFinal(false) {}
 
@@ -24,29 +41,23 @@ bool Rule::operator!=(const Rule& other) const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Rule& rule) {
-    os << rule.toString();
-    return os;
+    return os << rule.toString();
 }
 
 std::istream& operator>>(std::istream& is, Rule& rule) {
     std::string line;
-    if (std::getline(is, line)) {
-        size_t arrowPos = line.find("->.");
-        if (arrowPos != std::string::npos) {
-            rule.left = line.substr(0, arrowPos);
-            rule.right = line.substr(arrowPos + 3);
-            rule.isFinal = true;
-        } else {
-            arrowPos = line.find("->");
-            if (arrowPos != std::string::npos) {
-                rule.left = line.substr(0, arrowPos);
-                rule.right = line.substr(arrowPos + 2);
-                rule.isFinal = false;
-            }
-        }
-        rule.left.erase(rule.left.find_last_not_of(" \t") + 1);
-        rule.right.erase(0, rule.right.find_first_not_of(" \t"));
+    if (!std::getline(is, line)) return is;
+
+    size_t arrowPos = line.find("->");
+    if (arrowPos == std::string::npos) {
+        is.setstate(std::ios::failbit);
+        return is;
     }
+
+    bool fin = arrowPos + 2 < line.size() && line[arrowPos + 2] == '.';
+    size_t rightStart = arrowPos + (fin ? 3 : 2);
+
+    rule = Rule(trim(line.substr(0, arrowPos)), trim(line.substr(rightStart)), fin);
     return is;
 }
 
@@ -61,9 +72,10 @@ void RuleSet::addRule(const Rule& rule) {
 void RuleSet::addRule(const std::string& ruleStr) {
     std::istringstream iss(ruleStr);
     Rule r;
-    if (iss >> r) {
-        rules.push_back(r);
+    if (!(iss >> r)) {
+        throw std::invalid_argument("Invalid rule format: " + ruleStr);
     }
+    rules.push_back(r);
 }
 
 void RuleSet::clear() {
@@ -88,18 +100,29 @@ bool RuleSet::operator!=(const RuleSet& other) const {
 
 std::ostream& operator<<(std::ostream& os, const RuleSet& rs) {
     for (const auto& rule : rs.rules) {
-        os << rule << "\n";
+        os << rule << '\n';
     }
     return os;
 }
 
 std::istream& operator>>(std::istream& is, RuleSet& rs) {
-    Rule rule;
-    while (is >> rule) {
-        rs.addRule(rule);
+    RuleSet parsed;
+    std::string line;
+    while (std::getline(is, line)) {
+        if (isBlank(line)) continue;
+        std::istringstream iss(line);
+        Rule rule;
+        if (!(iss >> rule)) {
+            is.setstate(std::ios::failbit);
+            return is;
+        }
+        parsed.addRule(rule);
     }
+    is.clear(is.rdstate() & ~std::ios::failbit);
+    rs = parsed;
     return is;
 }
+
 
 MarkovAlgorithm::MarkovAlgorithm() : halted(false), stepCount(0) {}
 
@@ -110,10 +133,11 @@ bool MarkovAlgorithm::step() {
     if (halted) return false;
 
     for (const auto& rule : ruleSet.getRules()) {
-        size_t pos = word.find(rule.getLeft());
+        const std::string& left = rule.getLeft();
+        size_t pos = word.find(left);
         if (pos != std::string::npos) {
-            word.replace(pos, rule.getLeft().length(), rule.getRight());
-            stepCount++;
+            word.replace(pos, left.length(), rule.getRight());
+            ++stepCount;
             if (rule.isFinalRule()) {
                 halted = true;
             }
@@ -124,47 +148,24 @@ bool MarkovAlgorithm::step() {
     return false;
 }
 
-void MarkovAlgorithm::run() {
-    while (!halted) {
+void MarkovAlgorithm::run(size_t maxSteps) {
+    for (size_t i = 0; i < maxSteps && !halted; ++i) {
         step();
     }
 }
 
-std::string MarkovAlgorithm::getWord() const { return word; }
+void MarkovAlgorithm::setWord(const std::string& newWord) {
+    word = newWord;
+    halted = false;
+    stepCount = 0;
+}
+
+const std::string& MarkovAlgorithm::getWord() const { return word; }
 bool MarkovAlgorithm::isHalted() const { return halted; }
 size_t MarkovAlgorithm::getStepCount() const { return stepCount; }
 
-MarkovAlgorithm& MarkovAlgorithm::operator++() {
-    step();
-    return *this;
-}
-
-MarkovAlgorithm MarkovAlgorithm::operator++(int) {
-    MarkovAlgorithm temp = *this;
-    step();
-    return temp;
-}
-
-bool MarkovAlgorithm::operator==(const MarkovAlgorithm& other) const {
-    return word == other.word && ruleSet == other.ruleSet &&
-           halted == other.halted && stepCount == other.stepCount;
-}
-
-bool MarkovAlgorithm::operator!=(const MarkovAlgorithm& other) const {
-    return !(*this == other);
-}
-
 std::ostream& operator<<(std::ostream& os, const MarkovAlgorithm& ma) {
-    os << "Word: " << ma.word << " | Steps: " << ma.stepCount 
+    os << "Word: " << ma.word << " | Steps: " << ma.stepCount
        << " | Halted: " << (ma.halted ? "Yes" : "No");
     return os;
-}
-
-std::istream& operator>>(std::istream& is, MarkovAlgorithm& ma) {
-    is >> ma.word;
-    is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    is >> ma.ruleSet;
-    ma.halted = false;
-    ma.stepCount = 0;
-    return is;
 }
