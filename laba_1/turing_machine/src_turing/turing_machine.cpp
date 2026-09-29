@@ -1,4 +1,4 @@
-#include "turing_machine.hpp"
+#include "turing.hpp"
 #include <algorithm>
 #include <sstream>
 #include <stdexcept>

@@ -6,7 +6,7 @@
 #include <UnitTest++/UnitTest++.h>
 #include <sstream>
 #include <stdexcept>
-#include "turing_machine.hpp"
+#include "turing.hpp"
 
 TEST(DirectionToCharValid) {
     CHECK_EQUAL('L', directionToChar(Direction::Left));
