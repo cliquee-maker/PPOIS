@@ -1,0 +1,14 @@
+html/
+latex/
+*.tag
+
+*.o
+*.obj
+*.exe
+*.out
+*.app
+turing_app
+
+.vscode/
+build/
+bin/
