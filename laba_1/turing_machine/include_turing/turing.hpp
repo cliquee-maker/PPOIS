@@ -1,27 +1,33 @@
 #pragma once
 
-#include <string>
-#include <vector>
 #include <deque>
 #include <iostream>
+#include <string>
+#include <vector>
 
+/**
+ * @enum Direction
+ * @brief Направление движения головки машины Тьюринга.
+ */
 enum class Direction { Left, Right, Stay };
 
 char directionToChar(Direction dir);
-Direction charToDirection(char c);
 
+/// @throws std::invalid_argument, если символ не 'L', 'R' или 'S'.
+Direction charToDirection(char c);
 
 /**
  * @class TMRule
- * @brief Одно правило перехода машины Тьюринга: (state, readSymbol) -> (newState, writeSymbol, direction).
+ * @brief Одно правило перехода: (state, readSymbol) -> (newState, writeSymbol, direction).
+ *        Текстовый формат: "q0 a q1 b R".
  */
 class TMRule {
 private:
-    std::string state;
-    char readSymbol;
-    std::string newState;
-    char writeSymbol;
-    Direction direction;
+    std::string state_;
+    char readSymbol_;
+    std::string newState_;
+    char writeSymbol_;
+    Direction direction_;
 
 public:
     TMRule();
@@ -34,7 +40,13 @@ public:
     char getWriteSymbol() const;
     Direction getDirection() const;
 
-    bool matches(const std::string& state, char symbol) const;
+    /**
+     * @brief Проверяет применимость правила к данному состоянию и символу.
+     * @param curState Проверяемое состояние.
+     * @param symbol Проверяемый символ.
+     * @return true, если правило подходит, иначе false.
+     */
+    bool matches(const std::string& curState, char symbol) const;
     std::string toString() const;
 
     bool operator==(const TMRule& other) const;
@@ -48,10 +60,11 @@ public:
 /**
  * @class TMRuleSet
  * @brief Программа машины Тьюринга — набор правил переходов.
+ *        Формат ввода/вывода: одно правило на строку.
  */
 class TMRuleSet {
 private:
-    std::vector<TMRule> rules;
+    std::vector<TMRule> rules_;
 
 public:
     TMRuleSet();
@@ -61,7 +74,12 @@ public:
     void addRule(const std::string& ruleStr);
     bool removeRule(const std::string& state, char symbol);
     void clear();
-
+    /**
+     * @brief Поиск применимого правила.
+     * @param state Текущее состояние.
+     * @param symbol Считываемый символ.
+     * @return Указатель на найденное правило или nullptr, если правило не найдено.
+     */
     const TMRule* findRule(const std::string& state, char symbol) const;
     const std::vector<TMRule>& getRules() const;
     size_t size() const;
@@ -73,31 +91,35 @@ public:
     friend std::istream& operator>>(std::istream& is, TMRuleSet& rs);
 };
 
-
 /**
  * @class TuringMachine
- * @brief Лента (хранится внутри как deque<char> с кареткой) + программа + текущее состояние.
- *        Останавливается, когда для текущей пары (состояние, символ) нет применимого правила.
+ * @brief Машина Тьюринга: лента, программа и текущее состояние.
+ *        Останавливается, когда нет применимого правила для (состояния, символа).
  */
 class TuringMachine {
 private:
-    std::deque<char> tape;
-    size_t headIndex;
-    char blank;
-    TMRuleSet ruleSet;
-    std::string currentState;
-    bool halted;
-    size_t stepCount;
-    
+    std::deque<char> tape_;
+    size_t headIndex_;
+    char blank_;
+    TMRuleSet ruleSet_;
+    std::string currentState_;
+    bool halted_;
+    size_t stepCount_;
+
     char readCell() const;
     void writeCell(char symbol);
     void moveHead(Direction dir);
+
 public:
     TuringMachine();
     TuringMachine(const std::string& initialTape, const TMRuleSet& rules,
                   const std::string& startState, char blank = '_');
-
+    /**
+     * @brief Выполняет один шаг машины.
+     * @return true, если шаг выполнен; false, если машина остановилась.
+     */
     bool step();
+    /** @brief Выполняет программу до момента остановки. */
     void run();
 
     void setTape(const std::string& content);
@@ -107,12 +129,5 @@ public:
     bool isHalted() const;
     size_t getStepCount() const;
 
-    TuringMachine& operator++();
-    TuringMachine operator++(int);
-
-    bool operator==(const TuringMachine& other) const;
-    bool operator!=(const TuringMachine& other) const;
-
     friend std::ostream& operator<<(std::ostream& os, const TuringMachine& tm);
-    friend std::istream& operator>>(std::istream& is, TuringMachine& tm);
 };
