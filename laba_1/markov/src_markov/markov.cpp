@@ -7,33 +7,34 @@ namespace {
 
 const char* const kWhitespace = " \t\r\n";
 
-bool isBlank(const std::string& s) {
-    return s.find_first_not_of(kWhitespace) == std::string::npos;
+bool isBlank(const std::string& str) {
+    return str.find_first_not_of(kWhitespace) == std::string::npos;
 }
 
-std::string trim(const std::string& s) {
-    size_t begin = s.find_first_not_of(kWhitespace);
-    if (begin == std::string::npos) return "";
-    size_t end = s.find_last_not_of(kWhitespace);
-    return s.substr(begin, end - begin + 1);
+std::string trim(const std::string& str) {
+    size_t beginPos = str.find_first_not_of(kWhitespace);
+    if (beginPos == std::string::npos) return "";
+    size_t endPos = str.find_last_not_of(kWhitespace);
+    return str.substr(beginPos, endPos - beginPos + 1);
 }
-} 
 
-Rule::Rule() : isFinal(false) {}
+} // namespace
 
-Rule::Rule(const std::string& left, const std::string& right, bool isFinal)
-    : left(left), right(right), isFinal(isFinal) {}
+Rule::Rule() : isFinal_(false) {}
 
-std::string Rule::getLeft() const { return left; }
-std::string Rule::getRight() const { return right; }
-bool Rule::isFinalRule() const { return isFinal; }
+Rule::Rule(const std::string& leftPattern, const std::string& rightPattern, bool isTerminal)
+    : left_(leftPattern), right_(rightPattern), isFinal_(isTerminal) {}
+
+std::string Rule::getLeft() const { return left_; }
+std::string Rule::getRight() const { return right_; }
+bool Rule::isFinalRule() const { return isFinal_; }
 
 std::string Rule::toString() const {
-    return left + (isFinal ? " ->. " : " -> ") + right;
+    return left_ + (isFinal_ ? " ->. " : " -> ") + right_;
 }
 
 bool Rule::operator==(const Rule& other) const {
-    return left == other.left && right == other.right && isFinal == other.isFinal;
+    return left_ == other.left_ && right_ == other.right_ && isFinal_ == other.isFinal_;
 }
 
 bool Rule::operator!=(const Rule& other) const {
@@ -54,44 +55,44 @@ std::istream& operator>>(std::istream& is, Rule& rule) {
         return is;
     }
 
-    bool fin = arrowPos + 2 < line.size() && line[arrowPos + 2] == '.';
-    size_t rightStart = arrowPos + (fin ? 3 : 2);
+    bool terminalFlag = arrowPos + 2 < line.size() && line[arrowPos + 2] == '.';
+    size_t rightStartPos = arrowPos + (terminalFlag ? 3 : 2);
 
-    rule = Rule(trim(line.substr(0, arrowPos)), trim(line.substr(rightStart)), fin);
+    rule = Rule(trim(line.substr(0, arrowPos)), trim(line.substr(rightStartPos)), terminalFlag);
     return is;
 }
 
 RuleSet::RuleSet() = default;
 
-RuleSet::RuleSet(const std::vector<Rule>& rules) : rules(rules) {}
+RuleSet::RuleSet(const std::vector<Rule>& rulesList) : rules_(rulesList) {}
 
 void RuleSet::addRule(const Rule& rule) {
-    rules.push_back(rule);
+    rules_.push_back(rule);
 }
 
 void RuleSet::addRule(const std::string& ruleStr) {
     std::istringstream iss(ruleStr);
-    Rule r;
-    if (!(iss >> r)) {
+    Rule parsedRule;
+    if (!(iss >> parsedRule)) {
         throw std::invalid_argument("Invalid rule format: " + ruleStr);
     }
-    rules.push_back(r);
+    rules_.push_back(parsedRule);
 }
 
 void RuleSet::clear() {
-    rules.clear();
+    rules_.clear();
 }
 
 const std::vector<Rule>& RuleSet::getRules() const {
-    return rules;
+    return rules_;
 }
 
 size_t RuleSet::size() const {
-    return rules.size();
+    return rules_.size();
 }
 
 bool RuleSet::operator==(const RuleSet& other) const {
-    return rules == other.rules;
+    return rules_ == other.rules_;
 }
 
 bool RuleSet::operator!=(const RuleSet& other) const {
@@ -99,73 +100,73 @@ bool RuleSet::operator!=(const RuleSet& other) const {
 }
 
 std::ostream& operator<<(std::ostream& os, const RuleSet& rs) {
-    for (const auto& rule : rs.rules) {
+    for (const auto& rule : rs.rules_) {
         os << rule << '\n';
     }
     return os;
 }
 
 std::istream& operator>>(std::istream& is, RuleSet& rs) {
-    RuleSet parsed;
+    RuleSet parsedSet;
     std::string line;
     while (std::getline(is, line)) {
         if (isBlank(line)) continue;
         std::istringstream iss(line);
-        Rule rule;
-        if (!(iss >> rule)) {
+        Rule currentRule;
+        if (!(iss >> currentRule)) {
             is.setstate(std::ios::failbit);
             return is;
         }
-        parsed.addRule(rule);
+        parsedSet.addRule(currentRule);
     }
     is.clear(is.rdstate() & ~std::ios::failbit);
-    rs = parsed;
+    rs = parsedSet;
     return is;
 }
 
 
-MarkovAlgorithm::MarkovAlgorithm() : halted(false), stepCount(0) {}
+MarkovAlgorithm::MarkovAlgorithm() : halted_(false), stepCount_(0) {}
 
-MarkovAlgorithm::MarkovAlgorithm(const std::string& initialWord, const RuleSet& rules)
-    : word(initialWord), ruleSet(rules), halted(false), stepCount(0) {}
+MarkovAlgorithm::MarkovAlgorithm(const std::string& initialWord, const RuleSet& initialRules)
+    : word_(initialWord), ruleSet_(initialRules), halted_(false), stepCount_(0) {}
 
 bool MarkovAlgorithm::step() {
-    if (halted) return false;
+    if (halted_) return false;
 
-    for (const auto& rule : ruleSet.getRules()) {
-        const std::string& left = rule.getLeft();
-        size_t pos = word.find(left);
-        if (pos != std::string::npos) {
-            word.replace(pos, left.length(), rule.getRight());
-            ++stepCount;
+    for (const auto& rule : ruleSet_.getRules()) {
+        const std::string& leftPattern = rule.getLeft();
+        size_t matchPos = word_.find(leftPattern);
+        if (matchPos != std::string::npos) {
+            word_.replace(matchPos, leftPattern.length(), rule.getRight());
+            ++stepCount_;
             if (rule.isFinalRule()) {
-                halted = true;
+                halted_ = true;
             }
             return true;
         }
     }
-    halted = true;
+    halted_ = true;
     return false;
 }
 
 void MarkovAlgorithm::run(size_t maxSteps) {
-    for (size_t i = 0; i < maxSteps && !halted; ++i) {
+    for (size_t stepIdx = 0; stepIdx < maxSteps && !halted_; ++stepIdx) {
         step();
     }
 }
 
 void MarkovAlgorithm::setWord(const std::string& newWord) {
-    word = newWord;
-    halted = false;
-    stepCount = 0;
+    word_ = newWord;
+    halted_ = false;
+    stepCount_ = 0;
 }
 
-const std::string& MarkovAlgorithm::getWord() const { return word; }
-bool MarkovAlgorithm::isHalted() const { return halted; }
-size_t MarkovAlgorithm::getStepCount() const { return stepCount; }
+const std::string& MarkovAlgorithm::getWord() const { return word_; }
+bool MarkovAlgorithm::isHalted() const { return halted_; }
+size_t MarkovAlgorithm::getStepCount() const { return stepCount_; }
 
 std::ostream& operator<<(std::ostream& os, const MarkovAlgorithm& ma) {
-    os << "Word: " << ma.word << " | Steps: " << ma.stepCount
-       << " | Halted: " << (ma.halted ? "Yes" : "No");
+    os << "Word: " << ma.word_ << " | Steps: " << ma.stepCount_
+       << " | Halted: " << (ma.halted_ ? "Yes" : "No");
     return os;
 }

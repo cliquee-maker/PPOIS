@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Turing Machine: Класс TMRuleSet</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Turing Machine
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classTMRuleSet.html','','classTMRuleSet-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Класс TMRuleSet</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Программа машины Тьюринга — набор правил переходов. Формат ввода/вывода: одно правило на строку.  
+ <a href="#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="turing_8hpp_source.html">turing.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a0438ed0d9114bfe0e719a944d5f052e7" id="r_a0438ed0d9114bfe0e719a944d5f052e7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0438ed0d9114bfe0e719a944d5f052e7">TMRuleSet</a> ()</td></tr>
+<tr class="memitem:adfff79ad93182d953050273fcdcd5550" id="r_adfff79ad93182d953050273fcdcd5550"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adfff79ad93182d953050273fcdcd5550">TMRuleSet</a> (const std::vector&lt; <a class="el" href="classTMRule.html">TMRule</a> &gt; &amp;<a class="el" href="#a914aa29c6a4fa4c0cde48d6fd8c6c047">rules</a>)</td></tr>
+<tr class="memitem:af16474f3c0fc40357e779a66ef66937b" id="r_af16474f3c0fc40357e779a66ef66937b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af16474f3c0fc40357e779a66ef66937b">addRule</a> (const <a class="el" href="classTMRule.html">TMRule</a> &amp;rule)</td></tr>
+<tr class="memitem:a1b3274246b628a9b037a9bc71609ba13" id="r_a1b3274246b628a9b037a9bc71609ba13"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1b3274246b628a9b037a9bc71609ba13">addRule</a> (const std::string &amp;ruleStr)</td></tr>
+<tr class="memitem:aae01f6a7ad738ba85a42d5ac31dcd43b" id="r_aae01f6a7ad738ba85a42d5ac31dcd43b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aae01f6a7ad738ba85a42d5ac31dcd43b">removeRule</a> (const std::string &amp;state, char symbol)</td></tr>
+<tr class="memitem:abcfbd9daa874d51a816b804d9383b905" id="r_abcfbd9daa874d51a816b804d9383b905"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abcfbd9daa874d51a816b804d9383b905">clear</a> ()</td></tr>
+<tr class="memitem:a6c00e4804ca99efe2726830f2b1f5010" id="r_a6c00e4804ca99efe2726830f2b1f5010"><td class="memItemLeft">const <a class="el" href="classTMRule.html">TMRule</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a6c00e4804ca99efe2726830f2b1f5010">findRule</a> (const std::string &amp;state, char symbol) const</td></tr>
+<tr class="memdesc:a6c00e4804ca99efe2726830f2b1f5010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Поиск применимого правила.  <br /></td></tr>
+<tr class="memitem:a428e8aa5cc9953531493bca66abd6b8b" id="r_a428e8aa5cc9953531493bca66abd6b8b"><td class="memItemLeft">const std::vector&lt; <a class="el" href="classTMRule.html">TMRule</a> &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a428e8aa5cc9953531493bca66abd6b8b">getRules</a> () const</td></tr>
+<tr class="memitem:ae4cf9c39263fe6515cbc9d96d8ebf13a" id="r_ae4cf9c39263fe6515cbc9d96d8ebf13a"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ae4cf9c39263fe6515cbc9d96d8ebf13a">size</a> () const</td></tr>
+<tr class="memitem:ad81a57c16ef7d5119344d4e3878b32a2" id="r_ad81a57c16ef7d5119344d4e3878b32a2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad81a57c16ef7d5119344d4e3878b32a2">operator==</a> (const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;other) const</td></tr>
+<tr class="memitem:aa47af4c4d6ba3f7ada881055f4d1d888" id="r_aa47af4c4d6ba3f7ada881055f4d1d888"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa47af4c4d6ba3f7ada881055f4d1d888">operator!=</a> (const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;other) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:a914aa29c6a4fa4c0cde48d6fd8c6c047" id="r_a914aa29c6a4fa4c0cde48d6fd8c6c047"><td class="memItemLeft">std::vector&lt; <a class="el" href="classTMRule.html">TMRule</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a914aa29c6a4fa4c0cde48d6fd8c6c047">rules</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Друзья</h2></td></tr>
+<tr class="memitem:abc1107fd049476c42e8ae66505555947" id="r_abc1107fd049476c42e8ae66505555947"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#abc1107fd049476c42e8ae66505555947">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;rs)</td></tr>
+<tr class="memitem:ae0b55cb81503a937c046582d8748c88a" id="r_ae0b55cb81503a937c046582d8748c88a"><td class="memItemLeft">std::istream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae0b55cb81503a937c046582d8748c88a">operator&gt;&gt;</a> (std::istream &amp;is, <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;rs)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Программа машины Тьюринга — набор правил переходов. Формат ввода/вывода: одно правило на строку. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Конструктор(ы)</h2>
+<a id="a0438ed0d9114bfe0e719a944d5f052e7" name="a0438ed0d9114bfe0e719a944d5f052e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0438ed0d9114bfe0e719a944d5f052e7">&#9670;&#160;</a></span>TMRuleSet() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMRuleSet::TMRuleSet </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfff79ad93182d953050273fcdcd5550" name="adfff79ad93182d953050273fcdcd5550"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfff79ad93182d953050273fcdcd5550">&#9670;&#160;</a></span>TMRuleSet() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMRuleSet::TMRuleSet </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classTMRule.html">TMRule</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rules</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Методы</h2>
+<a id="a1b3274246b628a9b037a9bc71609ba13" name="a1b3274246b628a9b037a9bc71609ba13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3274246b628a9b037a9bc71609ba13">&#9670;&#160;</a></span>addRule() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TMRuleSet::addRule </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ruleStr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af16474f3c0fc40357e779a66ef66937b" name="af16474f3c0fc40357e779a66ef66937b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af16474f3c0fc40357e779a66ef66937b">&#9670;&#160;</a></span>addRule() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TMRuleSet::addRule </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTMRule.html">TMRule</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rule</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abcfbd9daa874d51a816b804d9383b905" name="abcfbd9daa874d51a816b804d9383b905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcfbd9daa874d51a816b804d9383b905">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TMRuleSet::clear </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c00e4804ca99efe2726830f2b1f5010" name="a6c00e4804ca99efe2726830f2b1f5010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c00e4804ca99efe2726830f2b1f5010">&#9670;&#160;</a></span>findRule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classTMRule.html">TMRule</a> * TMRuleSet::findRule </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>symbol</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Поиск применимого правила. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Текущее состояние. </td></tr>
+    <tr><td class="paramname">symbol</td><td>Считываемый символ. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Указатель на найденное правило или nullptr, если правило не найдено. </dd></dl>
+
+</div>
+</div>
+<a id="a428e8aa5cc9953531493bca66abd6b8b" name="a428e8aa5cc9953531493bca66abd6b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a428e8aa5cc9953531493bca66abd6b8b">&#9670;&#160;</a></span>getRules()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classTMRule.html">TMRule</a> &gt; &amp; TMRuleSet::getRules </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa47af4c4d6ba3f7ada881055f4d1d888" name="aa47af4c4d6ba3f7ada881055f4d1d888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa47af4c4d6ba3f7ada881055f4d1d888">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TMRuleSet::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad81a57c16ef7d5119344d4e3878b32a2" name="ad81a57c16ef7d5119344d4e3878b32a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81a57c16ef7d5119344d4e3878b32a2">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TMRuleSet::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae01f6a7ad738ba85a42d5ac31dcd43b" name="aae01f6a7ad738ba85a42d5ac31dcd43b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae01f6a7ad738ba85a42d5ac31dcd43b">&#9670;&#160;</a></span>removeRule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TMRuleSet::removeRule </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>symbol</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4cf9c39263fe6515cbc9d96d8ebf13a" name="ae4cf9c39263fe6515cbc9d96d8ebf13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4cf9c39263fe6515cbc9d96d8ebf13a">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t TMRuleSet::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Друзья класса и относящимся к классу обозначения</h2>
+<a id="abc1107fd049476c42e8ae66505555947" name="abc1107fd049476c42e8ae66505555947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc1107fd049476c42e8ae66505555947">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rs</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0b55cb81503a937c046582d8748c88a" name="ae0b55cb81503a937c046582d8748c88a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0b55cb81503a937c046582d8748c88a">&#9670;&#160;</a></span>operator&gt;&gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>is</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTMRuleSet.html">TMRuleSet</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rs</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="a914aa29c6a4fa4c0cde48d6fd8c6c047" name="a914aa29c6a4fa4c0cde48d6fd8c6c047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a914aa29c6a4fa4c0cde48d6fd8c6c047">&#9670;&#160;</a></span>rules</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classTMRule.html">TMRule</a>&gt; TMRuleSet::rules</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>turing_machine/include_turing/<a class="el" href="turing_8hpp_source.html">turing.hpp</a></li>
+<li>turing_machine/src_turing/<a class="el" href="turing__machine_8cpp.html">turing_machine.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="classTMRuleSet.html">TMRuleSet</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

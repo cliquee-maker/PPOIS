@@ -10,17 +10,18 @@
  */
 class Rule {
 private:
-    std::string left;     
-    std::string right;     
-    bool isFinal;          
+    std::string left_;     
+    std::string right_;     
+    bool isFinal_;          
 
 public:
     Rule();
-    Rule(const std::string& left, const std::string& right, bool isFinal = false);
+    Rule(const std::string& leftPattern, const std::string& rightPattern, bool isTerminal = false);
 
     std::string getLeft() const;
     std::string getRight() const;
     bool isFinalRule() const;
+
     /**
      * @brief Преобразует правило в строковый вид (например, "a -> b" или "a ->. b").
      * @return Строковое представление правила.
@@ -41,16 +42,18 @@ public:
  */
 class RuleSet {
 private:
-    std::vector<Rule> rules;
+    std::vector<Rule> rules_;
 
 public:
     RuleSet();
-    explicit RuleSet(const std::vector<Rule>& rules);
+    explicit RuleSet(const std::vector<Rule>& rulesList);
+
     /**
      * @brief Добавляет правило в конец списка.
      * @param rule Объект правила.
      */
     void addRule(const Rule& rule);
+
     /**
      * @brief Разбирает строку и добавляет правило.
      * @param ruleStr Строка формата "left -> right" или "left ->. right".
@@ -76,24 +79,27 @@ public:
  */
 class MarkovAlgorithm {
 private:
-    std::string word;
-    RuleSet ruleSet;
-    bool halted;
-    size_t stepCount;
+    std::string word_;
+    RuleSet ruleSet_;
+    bool halted_;
+    size_t stepCount_;
 
 public:
     MarkovAlgorithm();
-    MarkovAlgorithm(const std::string& initialWord, const RuleSet& rules);
+    MarkovAlgorithm(const std::string& initialWord, const RuleSet& initialRules);
+
     /**
      * @brief Выполняет ровно один шаг подстановки (первого применимого правила).
      * @return true, если шаг успешно выполнен; false, если ни одно правило не применимо или алгоритм остановлен.
      */
     bool step();
+
     /**
      * @brief Запускает алгоритм до полной остановки или превышения лимита шагов.
      * @param maxSteps Максимально допустимое количество шагов (защита от зацикливания).
      */
     void run(size_t maxSteps = 100000);
+
     /**
      * @brief Задает новое обрабатываемое слово и сбрасывает счетчики/флаг остановки.
      * @param newWord Новое слово.
