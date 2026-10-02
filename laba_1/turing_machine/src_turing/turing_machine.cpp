@@ -21,34 +21,34 @@ Direction charToDirection(char c) {
     }
 }
 
-TMRule::TMRule() : readSymbol('_'), writeSymbol('_'), direction(Direction::Stay) {}
+TMRule::TMRule() : readSymbol_('_'), writeSymbol_('_'), direction_(Direction::Stay) {}
 
 TMRule::TMRule(const std::string& state, char readSymbol,
                const std::string& newState, char writeSymbol, Direction direction)
-    : state(state), readSymbol(readSymbol), newState(newState),
-      writeSymbol(writeSymbol), direction(direction) {}
+    : state_(state), readSymbol_(readSymbol), newState_(newState),
+      writeSymbol_(writeSymbol), direction_(direction) {}
 
-std::string TMRule::getState() const { return state; }
-char TMRule::getReadSymbol() const { return readSymbol; }
-std::string TMRule::getNewState() const { return newState; }
-char TMRule::getWriteSymbol() const { return writeSymbol; }
-Direction TMRule::getDirection() const { return direction; }
+std::string TMRule::getState() const { return state_; }
+char TMRule::getReadSymbol() const { return readSymbol_; }
+std::string TMRule::getNewState() const { return newState_; }
+char TMRule::getWriteSymbol() const { return writeSymbol_; }
+Direction TMRule::getDirection() const { return direction_; }
 
 bool TMRule::matches(const std::string& st, char symbol) const {
-    return state == st && readSymbol == symbol;
+    return state_ == st && readSymbol_ == symbol;
 }
 
 std::string TMRule::toString() const {
     std::ostringstream oss;
-    oss << state << " " << readSymbol << " -> " 
-        << newState << " " << writeSymbol << " " << directionToChar(direction);
+    oss << state_ << " " << readSymbol_ << " -> " 
+        << newState_ << " " << writeSymbol_ << " " << directionToChar(direction_);
     return oss.str();
 }
 
 bool TMRule::operator==(const TMRule& other) const {
-    return state == other.state && readSymbol == other.readSymbol &&
-           newState == other.newState && writeSymbol == other.writeSymbol &&
-           direction == other.direction;
+    return state_ == other.state_ && readSymbol_ == other.readSymbol_ &&
+           newState_ == other.newState_ && writeSymbol_ == other.writeSymbol_ &&
+           direction_ == other.direction_;
 }
 
 bool TMRule::operator!=(const TMRule& other) const {
@@ -63,43 +63,43 @@ std::ostream& operator<<(std::ostream& os, const TMRule& rule) {
 std::istream& operator>>(std::istream& is, TMRule& rule) {
     std::string arrow;
     char dirChar;
-    if (is >> rule.state >> rule.readSymbol >> arrow >> rule.newState >> rule.writeSymbol >> dirChar) {
-        rule.direction = charToDirection(dirChar);
+    if (is >> rule.state_ >> rule.readSymbol_ >> arrow >> rule.newState_ >> rule.writeSymbol_ >> dirChar) {
+        rule.direction_ = charToDirection(dirChar);
     }
     return is;
 }
 
 TMRuleSet::TMRuleSet() = default;
 
-TMRuleSet::TMRuleSet(const std::vector<TMRule>& rules) : rules(rules) {}
+TMRuleSet::TMRuleSet(const std::vector<TMRule>& rules) : rules_(rules) {}
 
 void TMRuleSet::addRule(const TMRule& rule) {
-    rules.push_back(rule);
+    rules_.push_back(rule);
 }
 
 void TMRuleSet::addRule(const std::string& ruleStr) {
     std::istringstream iss(ruleStr);
     TMRule r;
     if (iss >> r) {
-        rules.push_back(r);
+        rules_.push_back(r);
     }
 }
 
 bool TMRuleSet::removeRule(const std::string& state, char symbol) {
-    auto it = std::remove_if(rules.begin(), rules.end(), [&](const TMRule& r) { return r.matches(state, symbol); });
-    if (it != rules.end()) {
-        rules.erase(it, rules.end());
+    auto it = std::remove_if(rules_.begin(), rules_.end(), [&](const TMRule& r) { return r.matches(state, symbol); });
+    if (it != rules_.end()) {
+        rules_.erase(it, rules_.end());
         return true;
     }
     return false;
 }
 
 void TMRuleSet::clear() {
-    rules.clear();
+    rules_.clear();
 }
 
 const TMRule* TMRuleSet::findRule(const std::string& state, char symbol) const {
-    for (const auto& rule : rules) {
+    for (const auto& rule : rules_) {
         if (rule.matches(state, symbol)) {
             return &rule;
         }
@@ -108,15 +108,15 @@ const TMRule* TMRuleSet::findRule(const std::string& state, char symbol) const {
 }
 
 const std::vector<TMRule>& TMRuleSet::getRules() const {
-    return rules;
+    return rules_;
 }
 
 size_t TMRuleSet::size() const {
-    return rules.size();
+    return rules_.size();
 }
 
 bool TMRuleSet::operator==(const TMRuleSet& other) const {
-    return rules == other.rules;
+    return rules_ == other.rules_;
 }
 
 bool TMRuleSet::operator!=(const TMRuleSet& other) const {
@@ -124,7 +124,7 @@ bool TMRuleSet::operator!=(const TMRuleSet& other) const {
 }
 
 std::ostream& operator<<(std::ostream& os, const TMRuleSet& rs) {
-    for (const auto& rule : rs.rules) {
+    for (const auto& rule : rs.rules_) {
         os << rule << "\n";
     }
     return os;
@@ -138,97 +138,97 @@ std::istream& operator>>(std::istream& is, TMRuleSet& rs) {
     return is;
 }
 
-TuringMachine::TuringMachine() : headIndex(0), blank('_'), halted(true), stepCount(0) {}
+TuringMachine::TuringMachine() : headIndex_(0), blank_('_'), halted_(true), stepCount_(0) {}
 
 TuringMachine::TuringMachine(const std::string& initialTape, const TMRuleSet& rules,
                              const std::string& startState, char blank)
-    : headIndex(0), blank(blank), ruleSet(rules), currentState(startState),
-      halted(false), stepCount(0) {
+    : headIndex_(0), blank_(blank), ruleSet_(rules), currentState_(startState),
+      halted_(false), stepCount_(0) {
     setTape(initialTape);
 }
 
 char TuringMachine::readCell() const {
-    if (headIndex >= tape.size()) return blank;
-    return tape[headIndex];
+    if (headIndex_ >= tape_.size()) return blank_;
+    return tape_[headIndex_];
 }
 
 void TuringMachine::writeCell(char symbol) {
-    if (headIndex >= tape.size()) {
-        tape.resize(headIndex + 1, blank);
+    if (headIndex_ >= tape_.size()) {
+        tape_.resize(headIndex_ + 1, blank_);
     }
-    tape[headIndex] = symbol;
+    tape_[headIndex_] = symbol;
 }
 
 void TuringMachine::moveHead(Direction dir) {
     if (dir == Direction::Left) {
-        if (headIndex == 0) {
-            tape.push_front(blank);
+        if (headIndex_ == 0) {
+            tape_.push_front(blank_);
         } else {
-            headIndex--;
+            headIndex_--;
         }
     } else if (dir == Direction::Right) {
-        headIndex++;
-        if (headIndex >= tape.size()) {
-            tape.push_back(blank);
+        headIndex_++;
+        if (headIndex_ >= tape_.size()) {
+            tape_.push_back(blank_);
         }
     }
 }
 
 bool TuringMachine::step() {
-    if (halted) return false;
+    if (halted_) return false;
 
     char currentSymbol = readCell();
-    const TMRule* rule = ruleSet.findRule(currentState, currentSymbol);
+    const TMRule* rule = ruleSet_.findRule(currentState_, currentSymbol);
 
     if (!rule) {
-        halted = true;
+        halted_ = true;
         return false;
     }
 
     writeCell(rule->getWriteSymbol());
-    currentState = rule->getNewState();
+    currentState_ = rule->getNewState();
     moveHead(rule->getDirection());
-    stepCount++;
+    stepCount_++;
 
     return true;
 }
 
 void TuringMachine::run() {
-    while (!halted) {
+    while (!halted_) {
         step();
     }
 }
 
 void TuringMachine::setTape(const std::string& content) {
-    tape.clear();
+    tape_.clear();
     for (char c : content) {
-        tape.push_back(c);
+        tape_.push_back(c);
     }
-    if (tape.empty()) {
-        tape.push_back(blank);
+    if (tape_.empty()) {
+        tape_.push_back(blank_);
     }
-    headIndex = 0;
-    stepCount = 0;
-    halted = false;
+    headIndex_ = 0;
+    stepCount_ = 0;
+    halted_ = false;
 }
 
 std::string TuringMachine::getTapeString() const {
-    return std::string(tape.begin(), tape.end());
+    return std::string(tape_.begin(), tape_.end());
 }
 
 long TuringMachine::getHeadPosition() const {
-    return static_cast<long>(headIndex);
+    return static_cast<long>(headIndex_);
 }
 
-std::string TuringMachine::getState() const { return currentState; }
-bool TuringMachine::isHalted() const { return halted; }
-size_t TuringMachine::getStepCount() const { return stepCount; }
+std::string TuringMachine::getState() const { return currentState_; }
+bool TuringMachine::isHalted() const { return halted_; }
+size_t TuringMachine::getStepCount() const { return stepCount_; }
 
 std::ostream& operator<<(std::ostream& os, const TuringMachine& tm) {
-    os << "State: " << tm.currentState << " | Steps: " << tm.stepCount << "\nTape: ";
-    for (size_t i = 0; i < tm.tape.size(); ++i) {
-        if (i == tm.headIndex) os << "[" << tm.tape[i] << "]";
-        else os << tm.tape[i];
+    os << "State: " << tm.currentState_ << " | Steps: " << tm.stepCount_ << "\nTape: ";
+    for (size_t i = 0; i < tm.tape_.size(); ++i) {
+        if (i == tm.headIndex_) os << "[" << tm.tape_[i] << "]";
+        else os << tm.tape_[i];
     }
     return os;
 }

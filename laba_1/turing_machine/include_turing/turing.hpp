@@ -23,11 +23,11 @@ Direction charToDirection(char c);
  */
 class TMRule {
 private:
-    std::string state;
-    char readSymbol;
-    std::string newState;
-    char writeSymbol;
-    Direction direction;
+    std::string state_;
+    char readSymbol_;
+    std::string newState_;
+    char writeSymbol_;
+    Direction direction_;
 
 public:
     TMRule();
@@ -64,7 +64,7 @@ public:
  */
 class TMRuleSet {
 private:
-    std::vector<TMRule> rules;
+    std::vector<TMRule> rules_;
 
 public:
     TMRuleSet();
@@ -98,13 +98,13 @@ public:
  */
 class TuringMachine {
 private:
-    std::deque<char> tape;
-    size_t headIndex;
-    char blank;
-    TMRuleSet ruleSet;
-    std::string currentState;
-    bool halted;
-    size_t stepCount;
+    std::deque<char> tape_;
+    size_t headIndex_;
+    char blank_;
+    TMRuleSet ruleSet_;
+    std::string currentState_;
+    bool halted_;
+    size_t stepCount_;
 
     char readCell() const;
     void writeCell(char symbol);
