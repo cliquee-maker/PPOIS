@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: g++ build active file",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "turing_machine_test.cpp",
+                "turing_machine.cpp",
+                "-o",
+                "${fileDirname}/turing_app"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}

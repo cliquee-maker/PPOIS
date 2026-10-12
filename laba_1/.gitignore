@@ -1,14 +1,23 @@
 html/
 latex/
 *.tag
+doxygen_warnings.log
 
 *.o
 *.obj
 *.exe
 *.out
 *.app
+*.txt
 turing_app
+markov_app
+unit_markov_app
+unit_turing_app
 
-.vscode/
-build/
-bin/
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vs/
+
+.vscode/*.log
