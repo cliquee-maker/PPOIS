@@ -1,3 +1,4 @@
+docs/
 html/
 latex/
 *.tag
@@ -8,16 +9,17 @@ doxygen_warnings.log
 *.exe
 *.out
 *.app
-*.txt
 turing_app
 markov_app
 unit_markov_app
 unit_turing_app
 
+*.txt
+
 .DS_Store
 Thumbs.db
 desktop.ini
+
 .idea/
 .vs/
-
 .vscode/*.log
