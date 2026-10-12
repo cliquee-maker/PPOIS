@@ -18,7 +18,7 @@ std::string trim(const std::string& str) {
     return str.substr(beginPos, endPos - beginPos + 1);
 }
 
-} // namespace
+} 
 
 Rule::Rule() : isFinal_(false) {}
 
@@ -61,10 +61,6 @@ std::istream& operator>>(std::istream& is, Rule& rule) {
     rule = Rule(trim(line.substr(0, arrowPos)), trim(line.substr(rightStartPos)), terminalFlag);
     return is;
 }
-
-RuleSet::RuleSet() = default;
-
-RuleSet::RuleSet(const std::vector<Rule>& rulesList) : rules_(rulesList) {}
 
 void RuleSet::addRule(const Rule& rule) {
     rules_.push_back(rule);
