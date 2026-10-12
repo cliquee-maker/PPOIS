@@ -9,10 +9,10 @@ doxygen_warnings.log
 *.exe
 *.out
 *.app
-turing_app
-markov_app
-unit_markov_app
-unit_turing_app
+./turing_test_app
+./markov_app
+./unit_markov_app
+./unit_turing_app
 
 *.txt
 
