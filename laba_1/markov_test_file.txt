@@ -1,4 +1,0 @@
-abacaba
-ab -> b
-ac ->. c
-a -> x
