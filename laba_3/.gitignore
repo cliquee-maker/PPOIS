@@ -1,0 +1,5 @@
+*.log
+*.o
+*.out
+a.out
+run_tests

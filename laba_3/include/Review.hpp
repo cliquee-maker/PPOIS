@@ -1,51 +1,33 @@
 #pragma once
 
 #include <string>
+#include "Documents.hpp"   
+#include "Basic.hpp"
 
-class Tourist;
+class HotelPartner;        
 
-// Оценка с текстовым комментарием.
-class Rating {
-private:
-    int value_;
-    std::string comment_;
+class AgencyContract : public BookingConfirmation {
+    const HotelPartner* partner_;
 public:
-    Rating(int value, const std::string& comment);
-    bool isPositive() const;
-    std::string stars() const;
-    bool isBetterThan(const Rating& other) const;
+    AgencyContract(int n, const std::string& d, int count,
+                   const HotelPartner* p);
+    const HotelPartner* getPartner() const;
+    std::string title() const override;
 };
 
-// Отзыв туриста об услуге.
-class Review {
-private:
-    const Tourist* author_;
-    Rating rating_;
-    std::string text_;
-    std::string date_;
-    int helpfulCount_ = 0;
-    bool verified_ = false;
-public:
-    Review(const Tourist* author, const Rating& rating, const std::string& text,
-           const std::string& date);
-    std::string summary() const;
-    void markHelpful();
-    bool isVerified() const;
-    bool matchesRating(int stars) const;
-    void verify();
-};
 
-// Комментарий к отзыву.
-class ReviewComment {
+class BoardingPass {
 private:
-    const Tourist* author_;
-    std::string text_;
-    std::string date_;
-    bool reply_ = false;
+    std::string seatNumber_;
+    std::string passengerName_;
+    std::string ticketCode_;
+    bool checkedIn_;
+    Location destination_;
 public:
-    ReviewComment(const Tourist* author, const std::string& text,
-                  const std::string& date, bool reply);
-    std::string preview(int maxLength) const;
-    void edit(const std::string& text);
-    bool isReply() const;
+    BoardingPass(const std::string& seat, const std::string& passenger,
+                 const std::string& code, const Location& destination);
+    std::string printPass() const;
+    void checkIn();
+    bool isCheckedIn() const;
+    std::string getSeat() const;
 };

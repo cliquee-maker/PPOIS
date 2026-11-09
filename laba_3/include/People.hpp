@@ -4,6 +4,7 @@
 #include <vector>
 #include "except.hpp"
 #include "Basic.hpp"
+#include "Service.hpp"
 
 class Transfer;
 
@@ -38,7 +39,7 @@ public:
     std::string role() const override;
 };
 
-class Guide : public Employee {
+class Guide : virtual public Employee {
     std::vector<std::string> languages_;
     std::string licenseNumber_;
 public:
@@ -50,7 +51,7 @@ public:
     std::string role() const override;
 };
 
-class SupportAgent : public Employee {
+class SupportAgent :virtual public Employee {
     std::string shiftStart_;
     int resolvedTickets_ = 0;
 public:
@@ -76,7 +77,7 @@ public:
     std::string role() const override;
 };
 
-class HotelPartner : virtual public Person {
+class HotelPartner : public Person {
     std::string hotelName_;
     int rating_ = 5;
 public:
@@ -87,7 +88,7 @@ public:
     std::string role() const override;
 };
 
-class TourManager : public Employee {
+class TourManager : virtual public Employee {
     int managedAgents_;
 public:
     TourManager(int i, const std::string& n, const Location& loc, double s, int agents);
@@ -98,7 +99,7 @@ public:
     std::string role() const override;
 };
 
-class TransferDriver : public Employee {
+class TransferDriver : virtual public Employee {
     std::string vehicleModel_;
     double distanceDrivenKm_ = 0.0;
 public:

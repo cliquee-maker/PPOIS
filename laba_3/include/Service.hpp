@@ -4,10 +4,10 @@
 #include <vector>
 #include "except.hpp"
 #include "Basic.hpp"
+#include "People.hpp"
 
 class TransferDriver;
 
-// Базовый класс любой услуги.
 class TravelService {
 protected:
     int id_;
@@ -18,6 +18,7 @@ public:
     TravelService(int i, const std::string& t, int slots);
     virtual ~TravelService();
     void setPrice(double price);
+    double getBasePrice() const; 
     double totalRevenue() const;
     void releaseSlots(int n);
     void bookSlots(int n);
@@ -27,7 +28,6 @@ public:
     virtual std::string describe() const;
 };
 
-// Авиаперелёт.
 class FlightBooking : public TravelService {
 protected:
     int flightNumber_;
@@ -54,10 +54,10 @@ public:
     bool isAllowedFor(int age) const;
     void setYear(int year);
     bool isUpcoming(int currentYear) const;
-    std::string routeSummary() const;
+    std::string routeSummary() const; 
 };
 
-// Эконом-класс.
+
 class EconomyFlight : public FlightBooking {
     double baggageFee_;
 public:
@@ -66,10 +66,10 @@ public:
                   const TourOperator& op, const TourCategory& c, double bagFee);
     double durationDays() const override;
     std::string describe() const override;
-    double totalBaggageCost(double kg) const;
+    double totalBaggageCost(double kg) const; 
 };
 
-// Бизнес-класс.
+
 class BusinessFlight : public FlightBooking {
     bool vipLoungeAccess_;
 public:
@@ -77,11 +77,11 @@ public:
                    const std::string& code, const TravelAgent& a,
                    const TourOperator& op, const TourCategory& c, bool vip);
     bool hasVipAccess() const;
-    double loungeValue() const;
+    double loungeValue() const; 
     std::string describe() const override;
 };
 
-// Круиз (самостоятельный вид услуги, не перелёт).
+
 class CruiseBooking : public TravelService {
     int cabinCount_;
     bool balcony_;
@@ -93,7 +93,7 @@ public:
     bool hasBalcony() const;
 };
 
-// Проживание в отеле.
+
 class HotelBooking : public TravelService {
     int nights_;
     int stars_;
@@ -105,7 +105,7 @@ public:
     double nightlyRate() const;
 };
 
-// Экскурсия.
+
 class ExcursionBooking : public TravelService {
     int durationHours_;
     bool guideIncluded_;
@@ -116,7 +116,7 @@ public:
     double guideCost() const;
 };
 
-// Трансфер из аэропорта в отель и обратно.
+
 class Transfer : public TravelService {
     const TransferDriver* driver_;
     Location pickup_;
@@ -133,7 +133,7 @@ public:
     bool isLongDistance() const;
 };
 
-// Составной тур из нескольких услуг.
+
 class TravelPackage {
 private:
     std::string name_;
@@ -148,7 +148,7 @@ public:
     std::string itinerarySummary() const;
 };
 
-// Страховая услуга.
+
 class InsuranceService : public TravelService {
     double coverageAmount_;
     std::string providerName_;

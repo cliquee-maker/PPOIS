@@ -28,6 +28,8 @@ public:
     Price add(const Price& other) const;
     Price subtract(const Price& other) const;
     bool isAffordable(double budget) const;
+    double amount() const;
+    std::string currency() const;
 };
 
 class DateRange {
@@ -40,6 +42,8 @@ public:
     bool overlaps(const DateRange& other) const;
     bool contains(const std::string& date) const;
     void extend(int days);
+    std::string getStart() const;
+    std::string getEnd() const;
 };
 
 class ContactInfo {
@@ -52,6 +56,7 @@ public:
     ContactInfo(const std::string& phone, const std::string& email);
     bool isValidEmail() const;
     bool isValidPhone() const;
+    void setPhone(const std::string& phone);
     void setEmergencyContact(const std::string& phone);
     std::string maskedPhone() const;
 };
@@ -70,7 +75,6 @@ public:
     double distanceTo(const Location& other) const;
 };
 
-// Норма багажа для перелёта или круиза.
 class BaggageAllowance {
 private:
     double maxWeightKg_;
@@ -129,15 +133,3 @@ public:
     bool serves(const Location& destination) const;
 };
 
-class Discount {
-private:
-    std::string code_;
-    double percent_;
-    DateRange validPeriod_;
-public:
-    Discount(const std::string& code, double percent, const DateRange& period);
-    bool isActive(const std::string& date) const;
-    double apply(double amount) const;
-    bool isBetterThan(const Discount& other) const;
-    std::string describe() const;
-};

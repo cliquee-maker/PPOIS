@@ -4,6 +4,8 @@
 #include <vector>
 #include "except.hpp"
 #include "Basic.hpp"
+#include "People.hpp"
+#include "Service.hpp"
 
 class Tourist;
 class TravelService;
@@ -25,6 +27,7 @@ public:
     bool overlaps(const Reservation& other) const;
     void addService(TravelService* service);
     std::string summary() const;
+    int nights() const;
 };
 
 class BookingRequest {
@@ -78,16 +81,3 @@ public:
     void release(int people);
 };
 
-class Seat {
-private:
-    std::string number_;
-    std::string row_;
-    bool window_;
-    bool occupied_ = false;
-public:
-    Seat(const std::string& number, const std::string& row, bool window);
-    bool isAvailable() const;
-    void occupy();
-    double extraFee() const;
-    std::string label() const;
-};

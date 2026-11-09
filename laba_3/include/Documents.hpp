@@ -3,9 +3,9 @@
 #include <string>
 #include "except.hpp"
 #include "Basic.hpp"
+#include "People.hpp" 
 
-class Tourist;
-class HotelPartner;
+class Tourist;  
 
 class TravelDocument {
 protected:
@@ -22,7 +22,7 @@ public:
     virtual std::string title() const;
 };
 
-class Invoice : virtual public TravelDocument {
+class Invoice : public TravelDocument {
     double amount_;
     double taxRate_ = 0.1;
     bool paid_ = false;
@@ -37,7 +37,7 @@ public:
     std::string title() const override;
 };
 
-class TravelVoucher : virtual public TravelDocument {
+class TravelVoucher : public TravelDocument {
     bool redeemed_;
 public:
     TravelVoucher(int n, const std::string& d, bool r);
@@ -47,7 +47,7 @@ public:
     std::string title() const override;
 };
 
-class ETicket : public TravelDocument {
+class ETicket : virtual public TravelDocument {
     std::string flightCode_;
     std::string seat_;
 public:
@@ -69,7 +69,7 @@ public:
     std::string title() const override;
 };
 
-class BookingConfirmation : public TravelDocument {
+class BookingConfirmation : virtual public TravelDocument {
     const Tourist* tourist_;
     int servicesCount_;
     std::string status_;
@@ -83,47 +83,15 @@ public:
     std::string title() const override;
 };
 
-class AgencyContract : public BookingConfirmation {
-    const HotelPartner* partner_;
-    bool signed_ = false;
-public:
-    AgencyContract(int n, const std::string& d, int count, const HotelPartner* p,
-                   const Tourist* t);
-    const HotelPartner* getPartner() const;
-    void sign();
-    bool isSigned() const;
-    double commission() const;
-    std::string title() const override;
-};
-
 class InsurancePolicy : public TravelDocument {
     std::string coverageType_;
-    double coverageAmount_ = 50000.0;
+    double coverageAmount_;
 public:
-    InsurancePolicy(int n, const std::string& d, const std::string& coverage);
+    InsurancePolicy(int n, const std::string& d, const std::string& coverage,
+                    double coverageAmount = 50000.0);
     std::string getCoverageType() const;
     void approveClaim(double amount);
     bool covers(double damage) const;
     bool isPremium() const;
     std::string title() const override;
-};
-
-class BoardingPass {
-private:
-    std::string seatNumber_;
-    std::string passengerName_;
-    std::string ticketCode_;
-    bool checkedIn_;
-    Location destination_;
-public:
-    BoardingPass(const std::string& seat,
-                 const std::string& passenger,
-                 const std::string& code,
-                 const Location& destination);
-    std::string printPass() const;
-    void checkIn();
-    bool isCheckedIn() const;
-    std::string getSeat() const;
-    bool isValidFor(const Location& location) const;
-    void upgradeSeat(const std::string& newSeat);
 };

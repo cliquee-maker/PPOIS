@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstddef>
 #include <string>
 #include "except.hpp"
 #include "Basic.hpp"
@@ -61,32 +60,7 @@ public:
     bool isCredit() const;
     std::string receipt() const;
     void reverse();
+    double amount() const;
 };
 
-class Refund {
-private:
-    const Transaction* original_;
-    Price amount_;
-    std::string reason_;
-    bool approved_ = false;
-public:
-    Refund(const Transaction* original, const Price& amount,
-           const std::string& reason);
-    bool approve();
-    bool isFullRefund() const;
-    double fee() const;
-};
 
-class Notification {
-private:
-    std::string recipient_;
-    std::string message_;
-    std::string channel_;
-    bool sent_ = false;
-public:
-    Notification(const std::string& recipient, const std::string& message,
-                 const std::string& channel);
-    bool send();
-    void markRead();
-    std::string preview(std::size_t maxLength) const;
-};
