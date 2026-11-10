@@ -58,7 +58,7 @@ class LuggageCompartment {
     int id_;
     double loadKg_;
     double maxKg_;
-public: // Добавлено, чтобы методы были доступны
+public: 
     LuggageCompartment(int i, double maxKg);
     void loadLuggage(double kg);
     bool isFull() const;
@@ -73,7 +73,7 @@ class DestinationRoute {
     int checkpointsCount_;
     std::vector<FlightDeck*> transportDecks_;
     bool blocked_ = false;
-public: // Добавлено, чтобы методы были доступны
+public: 
     DestinationRoute(int i, double length, int checkPoints);
     void addDeck(FlightDeck* deck);
     int totalBlocks() const;
@@ -88,13 +88,13 @@ class TourSection {
     std::string regionName_;
     const TourCategory* category_;
     int capacity_ = 100;
-public: // Добавлено, чтобы методы были доступны
+public: 
     TourSection(int i, const std::string& name, const TourCategory* cat);
     bool acceptsCategory(const TourCategory& cat) const;
     bool hasCapacity(int groupSize) const;
     void reserve(int groupSize);
     int freeSlots() const;
-    int getCapacity() const; // Добавлено (используется в TravelAgencySystem::totalCapacity())
+    int getCapacity() const; 
 };
 
 class VIPLounge {
@@ -102,7 +102,7 @@ class VIPLounge {
     double currentTemp_;
     double occupancyRate_;
     double targetTemp_ = 21.0;
-public: // Добавлено, чтобы методы были доступны
+public: 
     VIPLounge(int i, double temp, double occupancy);
     void adjustClimate();
     bool isComfortableForVip() const;
@@ -137,7 +137,7 @@ public:
 class AuditLog {
     std::vector<std::string> entries_;
     std::size_t maxEntries_;
-public: // Добавлено, чтобы методы были доступны
+public: 
     explicit AuditLog(std::size_t maxEntries);
     void record(const std::string& event);
     std::string lastEntry() const;
