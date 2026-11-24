@@ -1,0 +1,13 @@
+app
+run_tests
+demo
+sorting_tests
+
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.out
+*.exe
+*.d
